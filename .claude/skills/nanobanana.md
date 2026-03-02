@@ -249,3 +249,88 @@ the bathroom mirror, morning routine feel."
 ```
 
 **Saved to:** `prompts/ugc-style/vitamin-c-serum-ugc-mirror-selfie-01.json`
+
+---
+
+# Nano Banana 2 Ad Creative Skill
+
+## Purpose
+
+Convert plain-text ad creative briefs into structured JSON prompts
+for Nano Banana 2 that produce consistent, ad-ready, realistic images
+for Facebook, Instagram, and e-commerce use.
+
+## JSON Prompt Schema
+
+Always structure prompts as JSON with these fields:
+
+```json
+{
+  "prompt": "Detailed visual description of the ad creative",
+  "negative_prompt": "Elements to exclude",
+  "settings": {
+    "resolution": "1024x1024 | 1536x1536 | 2048x2048",
+    "aspect_ratio": "1:1 | 4:5 | 16:9 | 9:16",
+    "style": "See style guide below",
+    "lighting": "See lighting guide below",
+    "camera": {
+      "lens": "24mm | 35mm | 50mm | 85mm | 105mm | 200mm",
+      "angle": "eye-level | low-angle | high-angle | overhead | dutch-angle",
+      "framing": "extreme-close-up | close-up | medium | full-body | wide",
+      "height": "ground-level | waist-level | eye-level | elevated",
+      "depth_of_field": "shallow | moderate | deep",
+      "focus": "subject | background | split"
+    },
+    "color_grading": "warm | cool | neutral | muted | vibrant | cinematic"
+  }
+}
+```
+
+## Style Guide (Ad Creative Specific)
+
+- **ugc-selfie**: Shot on iPhone look. Ring light or natural window. Slightly imperfect framing. The person is holding or using the product. Casual, authentic, not polished.
+- **lifestyle-in-context**: Product in a real environment — kitchen counter, bathroom shelf, gym bag, desk. Natural lighting. Aspirational but believable.
+- **studio-product-hero**: Clean white or gradient background. Perfect even lighting. Product centered. No distractions. For catalog ads and hero images.
+- **flat-lay**: Overhead shot. Product surrounded by complementary items (ingredients, accessories). Styled but natural. Great for carousel ads.
+- **before-after**: Split composition or side-by-side. Clear transformation. Same lighting on both sides. Commonly used for skincare, supplements, cleaning products.
+- **editorial-beauty**: High-end magazine look. Dramatic lighting. Bold composition. For premium/luxury positioning.
+- **unboxing-moment**: Hands opening a package or holding a product for the first time. Excitement and discovery. Great for DTC subscription brands.
+
+## Lighting Guide
+
+- **ring-light**: Even, flattering facial lighting. The UGC standard. Slight catchlight in eyes.
+- **natural-window**: Soft diffused daylight. Lifestyle and product shots.
+- **golden-hour**: Warm directional sunlight. Outdoor lifestyle.
+- **studio-softbox**: Controlled, even lighting. Product hero shots.
+- **bathroom-vanity**: Warm overhead + mirror reflection. Skincare and beauty.
+- **dramatic-rim**: Hard backlight edge. Premium and editorial.
+- **overhead-natural**: Soft top-down light. Flat lay and food.
+
+## Platform-Specific Defaults
+
+- Facebook/Instagram Feed: 4:5 aspect ratio
+- Stories/Reels: 9:16 aspect ratio
+- Carousel ads: 1:1 aspect ratio
+- Landing page hero: 16:9 aspect ratio
+
+## Rules
+
+1. ALWAYS use JSON — never plain-text prompts
+2. ALWAYS include a negative_prompt
+3. For UGC-style: mention "shot on iPhone, slight motion blur, casual composition, imperfect framing" in the prompt
+4. For product shots: specify exact material properties ("matte packaging, glossy label, liquid inside glass bottle")
+5. For text/labels on products: spell out EXACTLY what it should say
+6. For people: specify "visible pores, natural skin texture, subtle blemishes" for realism — never airbrushed plastic skin
+7. Default negative_prompt:
+   `"blurry, low quality, distorted, extra fingers, extra limbs, watermark, cartoon, illustration, anime, 3d render, oversaturated, plastic skin, airbrushed, stock photo feel"`
+
+## Camera Lens Quick Reference
+
+| Lens  | Best For              | Ad Use Case                                    |
+|-------|-----------------------|------------------------------------------------|
+| 24mm  | Wide environment      | Lifestyle scene with full room context         |
+| 35mm  | Environmental portrait| UGC selfie, person + product in context        |
+| 50mm  | General purpose       | Versatile, natural feel                        |
+| 85mm  | Portrait              | Beauty and skincare close-ups                  |
+| 105mm | Product detail        | Texture, ingredients, label close-up           |
+| 200mm | Product isolation     | Product floating against blurred background    |
