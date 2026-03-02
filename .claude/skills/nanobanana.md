@@ -1,9 +1,10 @@
-# Skill: nanobanana — Ad Creative Prompt Builder
+# Nano Banana 2 Ad Creative Skill
 
 ## Purpose
 
-Turn plain-English creative briefs into structured JSON prompts optimized for
-Nano Banana 2 image generation, targeting Facebook and Instagram ad placements.
+Convert plain-text ad creative briefs into structured JSON prompts for
+Nano Banana 2 that produce consistent, ad-ready, realistic images for
+Facebook, Instagram, and e-commerce use.
 
 ---
 
@@ -17,57 +18,100 @@ Use this skill whenever the user:
 
 ---
 
-## Prompt JSON Schema
+## JSON Prompt Schema
 
-Every prompt must follow this structure. All fields are required unless marked
-optional.
+Always structure prompts as JSON with these fields:
 
 ```json
 {
-  "meta": {
-    "product": "<product name, lowercase hyphenated>",
-    "brand": "<brand name or 'unbranded'>",
-    "category": "<one of: product-hero | lifestyle | ugc-style | before-after | infographics | social-proof>",
-    "platform": "<facebook-feed | instagram-feed | stories-reels | carousel>",
-    "aspect_ratio": "<4:5 | 9:16 | 1:1>"
-  },
-  "scene": {
-    "description": "<1–2 sentence plain-English summary of the scene>",
-    "setting": "<environment: studio, kitchen, bathroom, gym, desk, outdoors, etc.>",
-    "time_of_day": "<morning | afternoon | golden-hour | evening | studio-lit>",
-    "mood": "<clean | warm | energetic | calm | bold | minimal | luxurious>"
-  },
-  "subject": {
-    "product_description": "<what the product looks like, packaging, color, size>",
-    "product_placement": "<center | left-third | right-third | hand-held | in-use>",
-    "model": "<none | hand-only | partial-body | full-body>",
-    "model_description": "<optional: demographics, expression, pose — omit if model is 'none'>"
-  },
-  "camera": {
-    "angle": "<eye-level | overhead | 45-degree | low-angle | close-up | macro>",
-    "lens": "<35mm | 50mm | 85mm | 100mm-macro | 24mm-wide>",
-    "depth_of_field": "<shallow | medium | deep>",
-    "shot_type": "<product-closeup | medium-shot | wide-shot | flat-lay>"
-  },
-  "lighting": {
-    "type": "<natural | studio-softbox | ring-light | golden-hour | dramatic | flat>",
-    "direction": "<front | side | back | overhead | diffused>",
-    "color_temperature": "<warm | neutral | cool>"
-  },
-  "style": {
-    "color_grading": "<vibrant | muted | pastel | high-contrast | natural>",
-    "texture": "<clean | film-grain | soft-glow | sharp-crisp>",
-    "reference_look": "<optional: describe a visual reference, e.g. 'glossier-style minimalism'>"
-  },
-  "text_overlay": {
-    "headline": "<optional: ad headline text to render on the image>",
-    "subheadline": "<optional: secondary line of copy>",
-    "cta": "<optional: call-to-action, e.g. 'Shop Now', 'Learn More'>",
-    "text_placement": "<top | bottom | center | left-bar | right-bar | none>"
-  },
-  "negative_prompt": "<things to avoid: e.g. 'no watermarks, no borders, no extra fingers, no blurry text'>"
+  "prompt": "Detailed visual description of the ad creative",
+  "negative_prompt": "Elements to exclude",
+  "settings": {
+    "resolution": "1024x1024 | 1536x1536 | 2048x2048",
+    "aspect_ratio": "1:1 | 4:5 | 16:9 | 9:16",
+    "style": "See style guide below",
+    "lighting": "See lighting guide below",
+    "camera": {
+      "lens": "24mm | 35mm | 50mm | 85mm | 105mm | 200mm",
+      "angle": "eye-level | low-angle | high-angle | overhead | dutch-angle",
+      "framing": "extreme-close-up | close-up | medium | full-body | wide",
+      "height": "ground-level | waist-level | eye-level | elevated",
+      "depth_of_field": "shallow | moderate | deep",
+      "focus": "subject | background | split"
+    },
+    "color_grading": "warm | cool | neutral | muted | vibrant | cinematic"
+  }
 }
 ```
+
+---
+
+## Style Guide (Ad Creative Specific)
+
+| Style | Description |
+|---|---|
+| `ugc-selfie` | Shot on iPhone look. Ring light or natural window. Slightly imperfect framing. The person is holding or using the product. Casual, authentic, not polished. |
+| `lifestyle-in-context` | Product in a real environment — kitchen counter, bathroom shelf, gym bag, desk. Natural lighting. Aspirational but believable. |
+| `studio-product-hero` | Clean white or gradient background. Perfect even lighting. Product centered. No distractions. For catalog ads and hero images. |
+| `flat-lay` | Overhead shot. Product surrounded by complementary items (ingredients, accessories). Styled but natural. Great for carousel ads. |
+| `before-after` | Split composition or side-by-side. Clear transformation. Same lighting on both sides. Commonly used for skincare, supplements, cleaning products. |
+| `editorial-beauty` | High-end magazine look. Dramatic lighting. Bold composition. For premium/luxury positioning. |
+| `unboxing-moment` | Hands opening a package or holding a product for the first time. Excitement and discovery. Great for DTC subscription brands. |
+
+---
+
+## Lighting Guide
+
+| Lighting | Description |
+|---|---|
+| `ring-light` | Even, flattering facial lighting. The UGC standard. Slight catchlight in eyes. |
+| `natural-window` | Soft diffused daylight. Lifestyle and product shots. |
+| `golden-hour` | Warm directional sunlight. Outdoor lifestyle. |
+| `studio-softbox` | Controlled, even lighting. Product hero shots. |
+| `bathroom-vanity` | Warm overhead + mirror reflection. Skincare and beauty. |
+| `dramatic-rim` | Hard backlight edge. Premium and editorial. |
+| `overhead-natural` | Soft top-down light. Flat lay and food. |
+
+---
+
+## Camera Lens Quick Reference
+
+| Lens | Best For | Ad Use Case |
+|------|----------|-------------|
+| 24mm | Wide environment | Lifestyle scene with full room context |
+| 35mm | Environmental portrait | UGC selfie, person + product in context |
+| 50mm | General purpose | Versatile, natural feel |
+| 85mm | Portrait | Beauty and skincare close-ups |
+| 105mm | Product detail | Texture, ingredients, label close-up |
+| 200mm | Product isolation | Product floating against blurred background |
+
+---
+
+## Platform-Specific Defaults
+
+| Placement | Aspect Ratio | Resolution |
+|---|---|---|
+| Facebook / Instagram Feed | 4:5 | 1536x1536 |
+| Stories / Reels | 9:16 | 1536x1536 |
+| Carousel ads | 1:1 | 1536x1536 |
+| Landing page hero | 16:9 | 2048x2048 |
+
+If the user doesn't specify a platform, default to **Facebook Feed (4:5)**.
+
+---
+
+## Rules
+
+1. **ALWAYS** use JSON — never plain-text prompts.
+2. **ALWAYS** include a `negative_prompt`.
+3. For **UGC-style**: mention `"shot on iPhone, slight motion blur, casual composition, imperfect framing"` in the prompt.
+4. For **product shots**: specify exact material properties (`"matte packaging, glossy label, liquid inside glass bottle"`).
+5. For **text/labels on products**: spell out EXACTLY what it should say.
+6. For **people**: specify `"visible pores, natural skin texture, subtle blemishes"` for realism — never airbrushed plastic skin.
+7. Default `negative_prompt`:
+   ```
+   "blurry, low quality, distorted, extra fingers, extra limbs, watermark, cartoon, illustration, anime, 3d render, oversaturated, plastic skin, airbrushed, stock photo feel"
+   ```
 
 ---
 
@@ -80,73 +124,73 @@ Extract these elements from the user's plain-English description:
 | Element | Question to Answer |
 |---|---|
 | Product | What is being advertised? |
-| Category | Which ad type? (product-hero, lifestyle, ugc-style, etc.) |
+| Style | Which style? (ugc-selfie, lifestyle-in-context, studio-product-hero, etc.) |
 | Platform | Where will it run? Default: Facebook Feed (4:5) |
 | Scene | What's happening in the image? |
-| Model | Is a person shown? How much of them? |
+| Model | Is a person shown? How are they framed? |
 | Mood | What feeling should the ad evoke? |
-| Style | Any visual references or brand aesthetics? |
-| Copy | Any text overlay needed? |
+| Lighting | What lighting setup fits the style? |
+| Copy | Any text on the product label or overlay? |
 
 If the brief is ambiguous on any element, **ask the user** before generating.
 
-### 2. Select Defaults by Category
+### 2. Select Defaults by Style
 
-Apply these category-specific defaults before the user's overrides:
+Apply these style-specific defaults before the user's overrides:
 
-**product-hero:**
-- setting: studio
-- camera angle: 45-degree, lens: 85mm, shallow DoF
-- lighting: studio-softbox, front, neutral
-- style: clean, sharp-crisp
-- model: none
+**ugc-selfie:**
+- lighting: `ring-light`
+- camera: 35mm, eye-level, medium framing, shallow DoF
+- color_grading: warm
+- prompt must include: "shot on iPhone, slight motion blur, casual composition, imperfect framing"
+- model must include: "visible pores, natural skin texture, subtle blemishes"
 
-**lifestyle:**
-- setting: contextual (kitchen, gym, desk, etc.)
-- camera angle: eye-level, lens: 35mm, medium DoF
-- lighting: natural, side, warm
-- style: natural, vibrant
-- model: partial-body or full-body
+**lifestyle-in-context:**
+- lighting: `natural-window`
+- camera: 35mm or 50mm, eye-level, medium or wide framing, moderate DoF
+- color_grading: warm or neutral
 
-**ugc-style:**
-- setting: casual real-world
-- camera angle: eye-level or selfie, lens: 24mm-wide, deep DoF
-- lighting: natural, diffused, warm
-- style: film-grain, muted
-- texture: slightly imperfect — this should look phone-shot, not polished
-- model: partial-body or full-body
+**studio-product-hero:**
+- lighting: `studio-softbox`
+- camera: 85mm or 105mm, eye-level or high-angle, close-up framing, shallow DoF
+- color_grading: neutral or cool
+
+**flat-lay:**
+- lighting: `overhead-natural`
+- camera: any lens, overhead angle, wide framing, deep DoF
+- color_grading: warm or vibrant
 
 **before-after:**
-- setting: neutral/studio or contextual
-- camera angle: eye-level, lens: 50mm, medium DoF
-- lighting: flat, front, neutral (consistent across both halves)
-- style: high-contrast, sharp-crisp
-- model: depends on product (skincare = face close-up, cleaning = wide)
+- lighting: `studio-softbox` (consistent across both halves)
+- camera: 50mm or 85mm, eye-level, medium framing, moderate DoF
+- color_grading: neutral
 
-**infographics:**
-- setting: flat background or studio
-- camera angle: overhead for flat-lay, eye-level for charts
-- lighting: flat, diffused, neutral
-- style: clean, vibrant, sharp-crisp
-- text_overlay: required — this category always includes text
+**editorial-beauty:**
+- lighting: `dramatic-rim`
+- camera: 85mm, eye-level or low-angle, close-up framing, shallow DoF
+- color_grading: cinematic
 
-**social-proof:**
-- setting: casual or neutral
-- camera angle: eye-level, lens: 50mm
-- lighting: natural, diffused, warm
-- style: natural, soft-glow
-- text_overlay: styled as a quote or review
+**unboxing-moment:**
+- lighting: `natural-window` or `ring-light`
+- camera: 35mm, eye-level or high-angle, medium framing, moderate DoF
+- color_grading: warm
 
 ### 3. Build the JSON
 
-Merge user intent with category defaults. User-specified values always win.
+1. Write a detailed `prompt` string that combines the scene, subject, style cues, and any required phrases from the Rules section.
+2. Set `negative_prompt` — start with the default and add style-specific exclusions.
+3. Fill `settings` with the camera, lighting, aspect_ratio, resolution, style, and color_grading.
+4. User-specified values always override defaults.
 
 ### 4. Validate
 
 Before saving, check:
-- [ ] `aspect_ratio` matches the platform
-- [ ] `category` is one of the six valid values
-- [ ] `negative_prompt` is present and includes at minimum: `"no watermarks, no borders"`
+- [ ] `aspect_ratio` matches the target platform
+- [ ] `style` is one of the seven valid values
+- [ ] `negative_prompt` is present (at minimum the default)
+- [ ] UGC prompts include the required "shot on iPhone…" language
+- [ ] People prompts include the required "visible pores…" language
+- [ ] Product label text is spelled out exactly if applicable
 - [ ] File name follows `{product}-{style}-{variation}.json`
 - [ ] The file does not already exist (increment variation number if it does)
 
@@ -155,20 +199,7 @@ Before saving, check:
 - Save the JSON to `prompts/<category>/{filename}.json`
 - Run generation
 - Save the output image to `images/<category>/{filename}.png`
-- Show the result to the user
-
----
-
-## Aspect Ratio Quick Reference
-
-| Placement | Ratio | Pixels (recommended) |
-|---|---|---|
-| Facebook Feed | 4:5 | 1080 x 1350 |
-| Instagram Feed | 4:5 | 1080 x 1350 |
-| Stories / Reels | 9:16 | 1080 x 1920 |
-| Carousel | 1:1 | 1080 x 1080 |
-
-If the user doesn't specify a platform, default to **Facebook Feed (4:5)**.
+- Show the result to the user and ask for feedback
 
 ---
 
@@ -176,11 +207,10 @@ If the user doesn't specify a platform, default to **Facebook Feed (4:5)**.
 
 When generating multiple images for the same brand or campaign:
 
-1. Lock `lighting`, `camera`, and `style` fields from the first approved image.
+1. Lock `settings.lighting`, `settings.camera`, and `settings.color_grading` from the first approved image.
 2. Copy those locked values into every subsequent prompt.
-3. Only vary `subject`, `scene.description`, `scene.setting`, and `text_overlay`.
-4. If the user changes a locked field, treat that as a new visual direction and
-   confirm before applying it to the rest of the set.
+3. Only vary `prompt` (scene/subject description) and product-specific details.
+4. If the user changes a locked field, treat that as a new visual direction and confirm before applying it to the rest of the set.
 
 ---
 
@@ -188,13 +218,11 @@ When generating multiple images for the same brand or campaign:
 
 When the user gives feedback on a generated image:
 
-1. Identify which JSON fields need adjustment (e.g., "too dark" → `lighting.type`,
-   `lighting.direction`, or `style.color_grading`).
+1. Identify which JSON fields need adjustment (e.g., "too dark" → `settings.lighting` or `settings.color_grading`).
 2. Update the prompt JSON with the corrected values.
 3. Save as a new variation (increment the number, never overwrite).
 4. Regenerate and present the updated result.
-5. If the user says "always do this", record the preference and apply it as a
-   new default for all future prompts in this session.
+5. If the user says "always do this", record the preference and apply it as a new default for all future prompts in this session.
 
 ---
 
@@ -207,44 +235,23 @@ bathroom shelf with morning light. Clean, bright, premium feel."
 
 ```json
 {
-  "meta": {
-    "product": "vitamin-c-serum",
-    "brand": "unbranded",
-    "category": "lifestyle",
-    "platform": "facebook-feed",
-    "aspect_ratio": "4:5"
-  },
-  "scene": {
-    "description": "A vitamin C serum bottle on a white marble bathroom shelf with soft morning sunlight streaming through a window.",
-    "setting": "bathroom",
-    "time_of_day": "morning",
-    "mood": "clean"
-  },
-  "subject": {
-    "product_description": "Amber glass dropper bottle with white label, vitamin C serum, 30ml",
-    "product_placement": "center",
-    "model": "none"
-  },
-  "camera": {
-    "angle": "45-degree",
-    "lens": "85mm",
-    "depth_of_field": "shallow",
-    "shot_type": "product-closeup"
-  },
-  "lighting": {
-    "type": "natural",
-    "direction": "side",
-    "color_temperature": "warm"
-  },
-  "style": {
-    "color_grading": "vibrant",
-    "texture": "sharp-crisp",
-    "reference_look": "premium skincare editorial"
-  },
-  "text_overlay": {
-    "text_placement": "none"
-  },
-  "negative_prompt": "no watermarks, no borders, no text, no blurry areas, no artificial-looking lighting"
+  "prompt": "A premium vitamin C serum in an amber glass dropper bottle with white label sitting on a white marble bathroom shelf. Soft morning sunlight streaming through a frosted window, creating gentle highlights on the glass bottle. Matte packaging, glossy label reading 'Vitamin C Brightening Serum', liquid visible inside glass bottle. Clean, bright, aspirational bathroom environment with minimal decor. Natural skin-care editorial feel.",
+  "negative_prompt": "blurry, low quality, distorted, extra fingers, extra limbs, watermark, cartoon, illustration, anime, 3d render, oversaturated, plastic skin, airbrushed, stock photo feel, cluttered background, harsh shadows",
+  "settings": {
+    "resolution": "1536x1536",
+    "aspect_ratio": "4:5",
+    "style": "lifestyle-in-context",
+    "lighting": "natural-window",
+    "camera": {
+      "lens": "85mm",
+      "angle": "eye-level",
+      "framing": "close-up",
+      "height": "waist-level",
+      "depth_of_field": "shallow",
+      "focus": "subject"
+    },
+    "color_grading": "warm"
+  }
 }
 ```
 

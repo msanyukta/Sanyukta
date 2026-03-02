@@ -21,13 +21,14 @@ the creation, iteration, and organization of paid social ad assets.
 ```
 /
 ├── CLAUDE.md                        # This file
+├── .claude/skills/nanobanana.md     # Nano Banana 2 prompt-building skill
 ├── prompts/                         # JSON prompt files, organized by ad category
-│   ├── product-hero/
-│   ├── lifestyle/
-│   ├── ugc-style/
-│   ├── before-after/
-│   ├── infographics/
-│   └── social-proof/
+│   ├── product-hero/                # studio-product-hero style
+│   ├── lifestyle/                   # lifestyle-in-context style
+│   ├── ugc-style/                   # ugc-selfie style
+│   ├── before-after/                # before-after style
+│   ├── infographics/                # flat-lay, editorial-beauty styles
+│   └── social-proof/                # unboxing-moment and social proof styles
 └── images/                          # Generated image outputs, mirroring prompts/
     ├── product-hero/
     ├── lifestyle/
@@ -63,23 +64,25 @@ Always use lowercase, hyphen-separated tokens. No spaces or underscores.
 2. Always save prompts as `.json` files in the matching `prompts/<category>/` subfolder.
 3. Always save images in the matching `images/<category>/` subfolder.
 4. Default aspect ratios:
-   - **Facebook Feed**: `4:5`
+   - **Facebook / Instagram Feed**: `4:5`
    - **Stories / Reels**: `9:16`
    - **Carousel**: `1:1`
+   - **Landing page hero**: `16:9`
 5. Never overwrite an existing file — increment the variation number (e.g., `-01`, `-02`).
 
 ---
 
-## Ad Creative Categories
+## Ad Creative Styles
 
-| Category | Description |
+| Style | Description |
 |---|---|
-| `product-hero` | Clean studio shots for catalog ads and hero images |
-| `lifestyle` | Product in real-world context (kitchen, bathroom, gym, desk) |
-| `ugc-style` | Looks like a real person took it on their phone |
-| `before-after` | Transformation shots for skincare, fitness, cleaning products |
-| `infographics` | Comparison charts, ingredient breakdowns, how-it-works diagrams |
-| `social-proof` | Styled to look like real reviews or testimonials |
+| `ugc-selfie` | Shot on iPhone look. Ring light or natural window. Casual, authentic, not polished. |
+| `lifestyle-in-context` | Product in a real environment — kitchen counter, bathroom shelf, gym bag, desk. |
+| `studio-product-hero` | Clean white or gradient background. Perfect even lighting. For catalog ads and hero images. |
+| `flat-lay` | Overhead shot. Product surrounded by complementary items. Great for carousel ads. |
+| `before-after` | Split composition or side-by-side. Clear transformation. Same lighting on both sides. |
+| `editorial-beauty` | High-end magazine look. Dramatic lighting. Bold composition. Premium positioning. |
+| `unboxing-moment` | Hands opening a package or holding a product. Excitement and discovery. |
 
 ---
 
@@ -121,5 +124,8 @@ When generating multiple images for the same brand or campaign:
 - This repository has no build system or test suite — it is a creative asset store.
 - The primary workflow is: brief → JSON prompt → generated image → feedback → iterate.
 - Do not introduce any image generation method other than the `nanobanana` skill.
-- Keep prompts human-readable and well-commented inside the JSON where the format allows.
+- All prompts must use structured JSON — never plain-text prompts.
+- Every prompt must include a `negative_prompt` field.
+- For UGC-style images, always include "shot on iPhone, slight motion blur, casual composition, imperfect framing" in the prompt.
+- For images with people, always include "visible pores, natural skin texture, subtle blemishes" for realism.
 - When unsure about a brand's visual style, ask before generating rather than guessing.
