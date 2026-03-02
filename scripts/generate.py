@@ -11,9 +11,6 @@ def generate_image(json_prompt_path, output_dir="images"):
         prompt_data = json.load(f)
 
     FAL_KEY = os.environ.get("FAL_KEY")
-    if not FAL_KEY:
-        print("Error: FAL_KEY environment variable is not set.")
-        sys.exit(1)
 
     payload = {
         "prompt": prompt_data["prompt"],
