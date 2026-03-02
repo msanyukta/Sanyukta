@@ -1,0 +1,19 @@
+{
+  "prompt": "Extreme close-up of a woman in her late 20s applying vitamin C serum drops to her cheekbone with a glass dropper. Shot on iPhone, slight motion blur, casual composition, imperfect framing. Camera held at a low angle by a friend or propped on the counter. Amber glass dropper bottle with white label reading 'Vitamin C Brightening Serum'. Golden serum drops visible on skin. Visible pores, natural skin texture, subtle blemishes, slightly dewy complexion. Soft bathroom vanity lighting from above, warm tones. White tiled bathroom wall slightly out of focus in background. Authentic, unpolished, real skincare routine moment.",
+  "negative_prompt": "blurry, low quality, distorted, extra fingers, extra limbs, watermark, cartoon, illustration, anime, 3d render, oversaturated, plastic skin, airbrushed, stock photo feel, professional lighting setup visible, perfect symmetry, overly posed",
+  "settings": {
+    "resolution": "1536x1536",
+    "aspect_ratio": "4:5",
+    "style": "ugc-selfie",
+    "lighting": "bathroom-vanity",
+    "camera": {
+      "lens": "35mm",
+      "angle": "low-angle",
+      "framing": "extreme-close-up",
+      "height": "waist-level",
+      "depth_of_field": "shallow",
+      "focus": "subject"
+    },
+    "color_grading": "warm"
+  }
+}

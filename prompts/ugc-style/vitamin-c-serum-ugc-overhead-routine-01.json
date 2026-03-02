@@ -1,0 +1,19 @@
+{
+  "prompt": "Overhead angle looking down at a woman in her late 20s standing at her bathroom sink, applying vitamin C serum to her face with one hand, holding her phone with the other as if filming a skincare routine video. Shot on iPhone, slight motion blur, casual composition, imperfect framing. She is looking up toward the camera with a relaxed expression. Amber glass dropper bottle with white label reading 'Vitamin C Brightening Serum' on the marble countertop next to a messy arrangement of other skincare products. Visible pores, natural skin texture, subtle blemishes, morning skin. Soft natural window light mixing with warm bathroom vanity light. Authentic get-ready-with-me vibe, not staged.",
+  "negative_prompt": "blurry, low quality, distorted, extra fingers, extra limbs, watermark, cartoon, illustration, anime, 3d render, oversaturated, plastic skin, airbrushed, stock photo feel, professional lighting setup visible, perfect symmetry, overly posed, bird's eye flat lay",
+  "settings": {
+    "resolution": "1536x1536",
+    "aspect_ratio": "4:5",
+    "style": "ugc-selfie",
+    "lighting": "natural-window",
+    "camera": {
+      "lens": "24mm",
+      "angle": "high-angle",
+      "framing": "medium",
+      "height": "elevated",
+      "depth_of_field": "moderate",
+      "focus": "subject"
+    },
+    "color_grading": "warm"
+  }
+}

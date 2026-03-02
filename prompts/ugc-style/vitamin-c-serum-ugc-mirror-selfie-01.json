@@ -1,0 +1,19 @@
+{
+  "prompt": "A woman in her late 20s taking a bathroom mirror selfie while applying a vitamin C serum dropper to her cheek. Shot on iPhone, slight motion blur, casual composition, imperfect framing. She is smiling softly, looking at her phone screen in the mirror. Wearing a simple white towel wrap. Bathroom has white subway tiles, warm vanity lighting reflected in the mirror. Amber glass dropper bottle with white label reading 'Vitamin C Brightening Serum' visible on the counter. Visible pores, natural skin texture, subtle blemishes, dewy skin from the serum. Ring light catchlight visible in her eyes. Authentic, unpolished, real-person feel.",
+  "negative_prompt": "blurry, low quality, distorted, extra fingers, extra limbs, watermark, cartoon, illustration, anime, 3d render, oversaturated, plastic skin, airbrushed, stock photo feel, professional lighting setup visible, perfect symmetry, overly posed",
+  "settings": {
+    "resolution": "1536x1536",
+    "aspect_ratio": "4:5",
+    "style": "ugc-selfie",
+    "lighting": "ring-light",
+    "camera": {
+      "lens": "35mm",
+      "angle": "eye-level",
+      "framing": "medium",
+      "height": "eye-level",
+      "depth_of_field": "shallow",
+      "focus": "subject"
+    },
+    "color_grading": "warm"
+  }
+}
